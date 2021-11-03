@@ -122,3 +122,94 @@ function swap(arr, i, j) {
   arr[j] = temp;
 }
 ```
+
+## 链表转换数组
+```js
+  function ListNode(val) {
+    this.val = val;
+    this.next = null;
+  }
+
+  function generateList (array) {
+    let fakeHead = new ListNode(0);
+    let current = fakeHead;
+    for (let index = 0; index < array.length; index++) {
+      current.next = { val: array [index], next: null};
+      current = current.next;
+  	}
+	return fakeHead.next;
+  }
+
+  function generateArray (list) {
+    let res = []:
+    while (list) {
+      res.push(list.val);
+      list = list.next;
+    }
+    return res;
+  }
+```
+
+## 有效括号
+```js
+ 
+while(str = readline()) {
+   const arr = str.split('');
+   const stack = [];
+  let flag = true;
+  
+  for(let i = 0; i < arr.length; i++) {
+    const sym = arr[i];
+    if(sym === '(' || sym === '{' || sym === '[') {
+      stack.push(sym)
+    } else {
+      if(!stack.length) {
+        flag = false; 
+        break;
+      }
+      const c = stack.pop();
+      let m = '';
+      if(sym === ')') {
+        m = '(';
+      } else if(sym === '}') {
+        m = '{';
+      } else if(sym === ']') {
+        m = '[';
+      }
+      if(c !== m) {
+        flag = false; 
+        break;
+      }
+    }
+  }
+  if(stack.length) {
+    flag = false;
+  }
+   console.log(flag)
+ }
+```
+
+## 两个链表相连
+```js
+const list1 = generateList(JSON.parse(readline()))
+const list2 = generateList(JSON.parse(readline()))
+let curList2 = list2;
+let curList1 = list1;
+let newList = list1;
+while(curList2) {
+  // 两层循环 利用插入排序
+  while(curList1 && curList2) {
+    if(curList2.val > curList1.val) {
+      const temp = curList1.next;
+      curList1.next = curList2
+      const temp2 = curList2.next
+      curList2.next = temp;
+      curList1 = curList2.next
+      curList2 = temp2
+      break
+    }
+  }
+}
+
+console.log(generateArray(list1))
+```
