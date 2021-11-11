@@ -262,3 +262,33 @@ function reverseBinaryTree(root) {
   return root;
 }
 ```
+
+## 判断是否是平衡二叉树
+
+思路：
+
+- 只要计算左右子节点树差值是否大于一
+
+代码实现：
+
+```js
+
+function
+
+```
+
+## 查找数的最大深度
+
+思路：
+
+- 循环计算左右两个子树的最大节点深度去最大值
+
+实现：
+
+```js
+// 判断数的深度
+function maxDepth(root) {
+  if (root) return 0;
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+}
+```
