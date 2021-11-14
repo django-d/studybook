@@ -6,6 +6,25 @@ function ListNode(val, left = null, right = null, next = null) {
   this.next = next;
 }
 
+function transformArrayToList(array) {
+  let fakeHead = new ListNode(0);
+  let current = fakeHead;
+  for (let index = 0; index < array.length; index++) {
+    current.next = { val: array[index], next: null };
+    current = current.next;
+  }
+  return fakeHead.next;
+}
+
+function transformListToArray(list) {
+  let res = [];
+  while (list) {
+    res.push(list.val);
+    list = list.next;
+  }
+  return res;
+}
+
 /**
  * 数组转换二叉树
  * @param {数组} arr
@@ -69,7 +88,9 @@ function reverseBinaryTree(root) {
   return root;
 }
 
-const binaryTree = transformArrayToBinaryTree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+const binaryTree = transformArrayToBinaryTree([
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+]);
 const result = transformBinaryTreeToArray(reverseBinaryTree(binaryTree));
 console.log("反转后：", result);
 
